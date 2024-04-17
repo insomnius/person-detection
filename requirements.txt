@@ -1,0 +1,4 @@
+ultralytics
+fiftyone
+opencv-python
+matplotlib
