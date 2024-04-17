@@ -1,19 +1,16 @@
 from ultralytics import YOLO
 import cv2
 
-# model = YOLO('/home/insomnius/.pyenv/runs/detect/train9/weights/best.pt')
-model = YOLO('/home/insomnius/.pyenv/runs/detect/train11/weights/best.pt')
-
-# video_path = './2863232-uhd_3840_2160_30fps.mp4'
+model_path = './training/yolov8n/train/weights/best.pt'
 video_path = './Shopping, People, Commerce, Mall, Many, Crowd, Walking   Free Stock video footage   YouTube.mp4'
-# video_path = '8MP 4K Dahua CCTV System Sample Video - Night Time.mp4'
+model = YOLO(model_path)
 
-results = model.track(video_path, persist=True, stream=True, conf=0.25)
+results = model.track(video_path, persist=True, stream=True, conf=0.25, task='detect')
 
 max_track_id = 0
 
 cap = cv2.VideoCapture(video_path)
-output = cv2.VideoWriter("output.avi", cv2.VideoWriter_fourcc(*'MPEG'), 25, (int(cap.get(3)),int(cap.get(4))))
+output = cv2.VideoWriter("output-4.avi", cv2.VideoWriter_fourcc(*'MPEG'), 25, (int(cap.get(3)),int(cap.get(4))))
 
 for result in results:
     summary = result.summary()

@@ -1,1 +1,0 @@
-# tidak ada apa-apa
